@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StudentProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CourseList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CourceName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreditHour" Type="float" />
+          <Property Name="ContactHour" Type="float" />
+        </EntityType>
+        <EntityType Name="StudentCourse">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="CourseID" Type="int" />
+          <Property Name="SemisterCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="EntryDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="StudentInformation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="ContactNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="MailingAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FatherOccupation" Type="nvarchar" MaxLength="50" />
+          <Property Name="FatherContactNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="MotherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MotherOccupation" Type="nvarchar" MaxLength="50" />
+          <Property Name="MotherContactNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="EntryDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'StudentProject.dbo.vwStudentInformation' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwStudentInformation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="char" MaxLength="10" />
+          <Property Name="ContactNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="MailingAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FatherOccupation" Type="nvarchar" MaxLength="50" />
+          <Property Name="FatherContactNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="MotherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MotherOccupation" Type="nvarchar" MaxLength="50" />
+          <Property Name="MotherContactNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="EntryDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'StudentProject.dbo.vwStudentList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwStudentList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="StudentProjectModelStoreContainer">
+          <EntitySet Name="CourseList" EntityType="Self.CourseList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentCourse" EntityType="Self.StudentCourse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentInformation" EntityType="Self.StudentInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vwStudentInformation" EntityType="Self.vwStudentInformation" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwStudentInformation].[ID] AS [ID], 
+    [vwStudentInformation].[Name] AS [Name], 
+    [vwStudentInformation].[DOB] AS [DOB], 
+    [vwStudentInformation].[ContactNo] AS [ContactNo], 
+    [vwStudentInformation].[MailingAddress] AS [MailingAddress], 
+    [vwStudentInformation].[FatherName] AS [FatherName], 
+    [vwStudentInformation].[FatherOccupation] AS [FatherOccupation], 
+    [vwStudentInformation].[FatherContactNo] AS [FatherContactNo], 
+    [vwStudentInformation].[MotherName] AS [MotherName], 
+    [vwStudentInformation].[MotherOccupation] AS [MotherOccupation], 
+    [vwStudentInformation].[MotherContactNo] AS [MotherContactNo], 
+    [vwStudentInformation].[EntryDate] AS [EntryDate], 
+    [vwStudentInformation].[UpdateDate] AS [UpdateDate]
+    FROM [dbo].[vwStudentInformation] AS [vwStudentInformation]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwStudentList" EntityType="Self.vwStudentList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwStudentList].[ID] AS [ID], 
+    [vwStudentList].[Name] AS [Name]
+    FROM [dbo].[vwStudentList] AS [vwStudentList]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StudentProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="StudentInformation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MailingAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FatherOccupation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FatherContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MotherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MotherOccupation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MotherContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EntryDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="StudentProjectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="StudentInformations" EntityType="Self.StudentInformation" />
+          <EntitySet Name="CourseLists" EntityType="StudentProjectModel.CourseList" />
+          <EntitySet Name="vwStudentLists" EntityType="StudentProjectModel.vwStudentList" />
+          <EntitySet Name="StudentCourses" EntityType="StudentProjectModel.StudentCourse" />
+          <EntitySet Name="vwStudentInformations" EntityType="StudentProjectModel.vwStudentInformation" />
+        </EntityContainer>
+        <EntityType Name="CourseList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CourceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreditHour" Type="Double" />
+          <Property Name="ContactHour" Type="Double" />
+        </EntityType>
+        <EntityType Name="vwStudentList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StudentCourse">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="CourseID" Type="Int32" />
+          <Property Name="SemisterCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EntryDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="vwStudentInformation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MailingAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FatherOccupation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FatherContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MotherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MotherOccupation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MotherContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EntryDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StudentProjectModelStoreContainer" CdmEntityContainer="StudentProjectEntities">
+          <EntitySetMapping Name="StudentInformations">
+            <EntityTypeMapping TypeName="StudentProjectModel.StudentInformation">
+              <MappingFragment StoreEntitySet="StudentInformation">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="MailingAddress" ColumnName="MailingAddress" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="FatherOccupation" ColumnName="FatherOccupation" />
+                <ScalarProperty Name="FatherContactNo" ColumnName="FatherContactNo" />
+                <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+                <ScalarProperty Name="MotherOccupation" ColumnName="MotherOccupation" />
+                <ScalarProperty Name="MotherContactNo" ColumnName="MotherContactNo" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CourseLists">
+            <EntityTypeMapping TypeName="StudentProjectModel.CourseList">
+              <MappingFragment StoreEntitySet="CourseList">
+                <ScalarProperty Name="ContactHour" ColumnName="ContactHour" />
+                <ScalarProperty Name="CreditHour" ColumnName="CreditHour" />
+                <ScalarProperty Name="CourceName" ColumnName="CourceName" />
+                <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwStudentLists">
+            <EntityTypeMapping TypeName="StudentProjectModel.vwStudentList">
+              <MappingFragment StoreEntitySet="vwStudentList">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentCourses">
+            <EntityTypeMapping TypeName="StudentProjectModel.StudentCourse">
+              <MappingFragment StoreEntitySet="StudentCourse">
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="SemisterCode" ColumnName="SemisterCode" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwStudentInformations">
+            <EntityTypeMapping TypeName="StudentProjectModel.vwStudentInformation">
+              <MappingFragment StoreEntitySet="vwStudentInformation">
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="MotherContactNo" ColumnName="MotherContactNo" />
+                <ScalarProperty Name="MotherOccupation" ColumnName="MotherOccupation" />
+                <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+                <ScalarProperty Name="FatherContactNo" ColumnName="FatherContactNo" />
+                <ScalarProperty Name="FatherOccupation" ColumnName="FatherOccupation" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="MailingAddress" ColumnName="MailingAddress" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

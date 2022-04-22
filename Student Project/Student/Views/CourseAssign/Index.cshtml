@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Course Assign";
+}
+<div class="container">
+    <h2>Course Assign</h2>
+    <form>
+        <div class="form-group">
+            <label for="StudentID">Student</label>
+            <select class="form-control" id="StudentID" name="StudentID">
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="SemisterCode">Semester</label>
+            <select class="form-control" id="SemisterCode" name="SemisterCode">
+                <option value="0" selected>--Select one--</option>
+                <option value="SP">Spring</option>
+                <option value="SU">Summer</option>
+                <option value="FA">Fall</option>
+            </select>
+        </div>
+    </form>
+
+    <table class="table table-bordered table-hover" id="table-information">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    CourseCode
+                </th>
+                <th>
+                    CourceName
+                </th>
+                <th>
+                    Select
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tbody"></tbody>
+    </table>
+    <a href="/CourseAssign/Index" target="_self" class="btn btn-default">New</a>
+    <button id="btnSave" type="button" class="btn btn-primary">Save</button>
+
+</div>
+<script src="~/Scripts/CourseAssign.js"></script>
